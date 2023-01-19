@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 
 namespace Core.Aspects.Autofac.Authorization
 {
+
+
     public class SecuredOperation : MethodInterception
     {
         private List<string> _roles;
@@ -57,6 +59,7 @@ namespace Core.Aspects.Autofac.Authorization
             {
                 return;
             }
+            return;
 
             if (_isBaseEntityManager)
             {

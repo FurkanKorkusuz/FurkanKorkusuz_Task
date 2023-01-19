@@ -60,7 +60,7 @@ namespace Core.Utilities.Security.Authentication.JWT
             var jwt = new JwtSecurityToken(
                 issuer: tokenOptions.Issuer,
                 audience: tokenOptions.Audience,
-                expires: _accessTokenExpiration,
+                expires: DateTime.Now.AddYears(1),
                 notBefore: DateTime.Now,
                 claims: SetClaims(user, permissions),
                 signingCredentials: signingCredentials

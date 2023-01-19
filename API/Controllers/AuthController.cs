@@ -22,7 +22,7 @@ namespace API.Controllers
             return Json(_authService.Login(userForLoginDto));
         }
 
-        [Authorize]
+        
         [HttpPost("register")]
         public IActionResult Register(UserForRegisterDto userForRegisterDto)
         {            
