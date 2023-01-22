@@ -29,17 +29,17 @@ namespace API.Controllers
             return Json(_authService.Register(userForRegisterDto));
         }
 
-        [Authorize]
-        [HttpPost("code-generator")]
-        public IActionResult CodeGenerator(string tableName)
-        {
-            DB_Model dB_Model = new DB_Model();
-            dB_Model.TableName = tableName;
-            dB_Model.HasAddDto = true;
+        //[Authorize]
+        //[HttpPost("code-generator")]
+        //public IActionResult CodeGenerator(string tableName)
+        //{
+        //    DB_Model dB_Model = new DB_Model();
+        //    dB_Model.TableName = tableName;
+        //    dB_Model.HasAddDto = true;
 
-            dB_Model.Generate(dB_Model);
+        //    dB_Model.Generate(dB_Model);
 
-            return Json(new { Success = true });
-        }
+        //    return Json(new { Success = true });
+        //}
     }
 }

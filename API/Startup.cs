@@ -111,7 +111,7 @@ namespace API
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 1safsfsdfdfd\"",
+                    Description = "admin yetkili örnek token aþaðýdadýr. \r\n\n\n Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjQiLCJlbWFpbCI6ImFkbWluQHRlc3QuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6ImFkbWluIiwibmJmIjoxNjc0MTQ5ODk0LCJleHAiOjE3MDU2ODU4OTQsImlzcyI6ImZ1cmthbmtvcmt1c3V6LmNvbSIsImF1ZCI6ImZ1cmthbmtvcmt1c3V6LmNvbSJ9.72JFpwKTUJiD4mfoXi0nFagggaWxKU0T8sWt6trKJ2A",
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {

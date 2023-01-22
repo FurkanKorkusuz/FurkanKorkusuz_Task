@@ -47,6 +47,10 @@ namespace Business.Concrete
 
             int userid = _httpContextAccessor.HttpContext.User.GetUserID();
             New @new = _newDal.GetByID(id);
+            if (@new == null)
+            {
+                return new EntityResult<New> { Error = "Bu ID numarasýna ait haber bulunamadý..." };
+            }
             if (@new.UserID == userid)
             {
                 return new EntityResult<New> { Entity = @new };
@@ -88,7 +92,13 @@ namespace Business.Concrete
         [CacheRemoveAspect(true)]
         public BaseResult Update(NewAddDto entity)
         {
-            New @new = GetByID(entity.ID).Entity;
+            EntityResult<New> result = GetByID(entity.ID);
+            if (!result.Success)
+            {
+                return result;
+            }
+
+            New @new = result.Entity;
             if (@new.UserID != _httpContextAccessor.HttpContext.User.GetUserID())
             {
                 return new BaseResult { Error = "Bu haber baþka bir kullanýcýya ait." };
