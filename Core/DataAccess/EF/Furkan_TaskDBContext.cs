@@ -15,7 +15,8 @@ namespace Core.DataAccess.EF
         public DbSet<User> User { get; set; }
         public DbSet<Permission> Permission { get; set; }
         public DbSet<UserPermission> Users_Permissions { get; set; }
-        public DbSet<New> New { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

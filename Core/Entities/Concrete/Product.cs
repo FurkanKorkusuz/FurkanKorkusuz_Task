@@ -2,20 +2,19 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Core.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
+using Oracle.ManagedDataAccess.Types;
 
 namespace Core.Entities.Concrete
 {
 
     [Table("Products")]
-    public class Product : IEntity
+    public class Product : BaseEntity
     {
-        [Dapper.Contrib.Extensions.Key]
-        [System.ComponentModel.DataAnnotations.Key]
-        public int ProductID { get; set; }
         public string ProductName { get; set; }
         public string ProductCode { get; set; }
-        public decimal CostPrice { get; set; }
+        public int  Stock { get; set; }
         public string UrlName { get; set; }
+        public int CategoryID { get; set; }
 
     }
 

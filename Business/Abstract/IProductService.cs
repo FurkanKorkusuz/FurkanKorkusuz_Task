@@ -17,12 +17,13 @@ namespace Business.Abstract
 
     public interface IEfProductService 
     {
-        Product Save(Product entity);
-        Product GetByID(int id);
-        void Update(Product entity);
+        Product Add(Product entity);
         void Delete(int id);
-        IQueryable<Product> All();
-        IQueryable<Product> Find(Expression<Func<Product, bool>> predicate);
+        List<Product> GetAll();
+        List<Product> Find(Expression<Func<Product, bool>>[] predicates);
+        List<Product> GetForList(Expression<Func<Product, bool>>[] predicates, Expression<Func<Product, string>> sort, bool desc, int page, int pageSize, out int totalRecords);
+        Product GetById(int id);
+        void Update(Product entity);
     }
 }
 

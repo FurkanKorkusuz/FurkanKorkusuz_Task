@@ -30,7 +30,7 @@ namespace Core.DataAccess.Dapper
             get
             {
                 if (_connectionString == null)
-                    _connectionString = SqlConnectionTools.ConnectionString("furkan", "f4kW5DGreVw5G2b");
+                    _connectionString = SqlConnectionTools.ConnectionString();
 
                 return _connectionString; 
             }

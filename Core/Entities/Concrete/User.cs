@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Core.Entities.Concrete
 {
     [Table("Users")]
-    public class User : BaseEntity<User>
+    public class User : BaseEntity
     {
         public string Email { get; set; }
         public string UserName { get; set; }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Core.Entities.Concrete
 {
     [Table("Permissions")]
-    public class Permission:BaseEntity<Permission>
+    public class Permission:BaseEntity
     {
         public string PermissionName { get; set; }
     }

@@ -41,16 +41,4 @@ namespace Core.Utilities.Business
         bool UpdateWithDto(TDto entity);
     }
 
-
-    public interface IEfGenericRepository<T> 
-        where T : class, IEntity
-    {
-        T Add(T entity);
-        T GetByID(int id);
-        void Update(T entity);
-        void Delete(int id);
-        List<T> GetList();
-        List<T> Find(Expression<Func<T, bool>> predicate);
-    }
-
 }

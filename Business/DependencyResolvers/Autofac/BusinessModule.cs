@@ -34,6 +34,7 @@ namespace Business.DependencyResolvers.Autofac
 
 
 
+
             // Authentication TOKEN
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JWTHelper>().As<ITokenHelper>();

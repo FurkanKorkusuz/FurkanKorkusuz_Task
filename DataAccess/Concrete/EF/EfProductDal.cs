@@ -16,7 +16,7 @@ namespace DataAccess.Concrete.EF
         }
     }
 
-   public interface IEfProductDal : IEfGenericRepository<Product>
+   public interface IEfProductDal : Core.DataAccess.Abstract.IRepository<Product>
     {
 
     }

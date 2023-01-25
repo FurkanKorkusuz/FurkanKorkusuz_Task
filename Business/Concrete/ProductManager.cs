@@ -12,6 +12,7 @@ using Core.DataAccess.EF;
 using System.Linq;
 using System.Linq.Expressions;
 using System;
+using static Slapper.AutoMapper;
 
 namespace Business.Concrete
 {
@@ -41,34 +42,42 @@ namespace Business.Concrete
         {
             _productDal = productRepository;
         }
-        public IQueryable<Product> All()
+
+
+        public List<Product> GetAll()
         {
-            throw new NotImplementedException();
+            return _productDal.GetAll();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _productDal.Delete(id);
         }
 
-        public IQueryable<Product> Find(Expression<Func<Product, bool>> predicate)
+        public List<Product> Find(Expression<Func<Product, bool>>[] predicates)
         {
-            throw new NotImplementedException();
+            return _productDal.Find(predicates);
         }
 
-        public Product GetByID(int id)
+
+        public List<Product> GetForList(Expression<Func<Product, bool>>[] predicates, Expression<Func<Product, string>> sort, bool desc, int page, int pageSize, out int totalRecords)
         {
-            return _productDal.GetByID(id);
+            return _productDal.GetForList(predicates,sort, desc, page, pageSize, out totalRecords);
         }
 
-        public Product Save(Product entity)
+        public Product GetById(int id)
         {
-            throw new NotImplementedException();
+            return _productDal.GetById(id);
+        }
+
+        public Product Add(Product entity)
+        {
+            return _productDal.Add(entity);
         }
 
         public void Update(Product entity)
         {
-            throw new NotImplementedException();
+            _productDal.Update(entity);
         }
     }
 

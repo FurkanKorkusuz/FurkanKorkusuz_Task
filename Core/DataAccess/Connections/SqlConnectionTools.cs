@@ -41,12 +41,12 @@ namespace Core.DataAccess.Connections
             }
         }
 
-        public static string ConnectionString(string user, string password)
+        public static string ConnectionString()
         {
 
             string server = ProductionServerForConnectionString;
 
-            return $"Server={server};Database=furkan_Task;Uid={user};Pwd={password};pooling='true';Max Pool Size=400;";
+            return $"Server={server};Database=furkan_Task;Integrated Security=true;pooling='true';Max Pool Size=400;";
         }
 
     }

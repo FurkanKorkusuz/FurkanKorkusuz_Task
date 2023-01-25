@@ -41,7 +41,7 @@ namespace Core.DependencyResolvers
 
             // Entity Framework Context
             services.AddDbContext<Furkan_TaskDBContext>(options =>
-                    options.UseSqlServer(SqlConnectionTools.ConnectionString("furkan", "f4kW5DGreVw5G2b")));
+                    options.UseSqlServer(SqlConnectionTools.ConnectionString()));
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using Core.Entities.Abstract;
+﻿using Core.DataAccess.Abstract;
+using Core.Entities.Abstract;
 using Core.Utilities.Business;
+using DapperExtensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,11 +15,12 @@ using static Dapper.SqlMapper;
 
 namespace Core.DataAccess.EF
 {
-    public abstract class EfGenericRepository<T>  : IEfGenericRepository<T>
+    public abstract class EfGenericRepository<T>  : Abstract.IRepository<T>
         where T : class, IEntity
     {
         private readonly Furkan_TaskDBContext _dbContext;
         private readonly DbSet<T> _dbSet;
+        private readonly int _listCount = 30;
 
 
         protected EfGenericRepository(Furkan_TaskDBContext dbContext)
@@ -28,38 +31,57 @@ namespace Core.DataAccess.EF
 
         public T Add(T entity)
         {
-            _dbSet.Add(entity);
+             _dbSet.Add(entity);
             _dbContext.SaveChanges();
             return entity;
         }
 
-        public virtual T GetByID(int id)
+        public T GetById(int id)
         {
             return _dbSet.Find(id);
         }
 
         public void Update(T entity)
         {
-            _dbSet.Attach(entity);
             _dbContext.Entry(entity).State = EntityState.Modified;
             _dbContext.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var entity = GetByID(id);
+            var entity = GetById(id);
             _dbSet.Remove(entity);
             _dbContext.SaveChanges();
         }
 
-        public virtual List<T> GetList()
-        { 
-            return _dbSet.AsNoTracking().ToList();
+        public List<T> Find(Expression<Func<T, bool>>[] predicates)
+        {
+
+            var query = _dbSet.AsQueryable();
+            foreach (var predicate in predicates)
+                query = query.Where(predicate);
+            return query.ToList();
+        }
+        public List<T> GetForList(Expression<Func<T, bool>>[] predicates, Expression<Func<T, string>> sort , bool desc, int page, int pageSize, out int totalRecords)
+        {
+            List<T> result = new List<T>();
+            var query = _dbSet.AsQueryable();
+            foreach (var predicate in predicates)
+                query = query.Where(predicate);
+
+            totalRecords = _dbSet.Count();
+            int skipRows = (page - 1) * pageSize;
+            if (desc)
+                result = query.OrderByDescending(sort).Skip(skipRows).Take(pageSize).ToList();
+            else
+                result = query.OrderBy(sort).Skip(skipRows).Take(pageSize).ToList();
+
+            return result;
         }
 
-        public virtual List<T> Find(Expression<Func<T, bool>> predicate)
+        public List<T> GetAll()
         {
-            return _dbSet.Where(predicate).ToList();
+            return _dbSet.AsEnumerable().ToList();
         }
 
     }
