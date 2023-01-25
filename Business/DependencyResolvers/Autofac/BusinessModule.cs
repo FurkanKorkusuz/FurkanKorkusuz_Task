@@ -25,13 +25,7 @@ namespace Business.DependencyResolvers.Autofac
         {
 
             // Code generator
-            // [CHANGE]
-            builder.RegisterType<NewManager>().As<INewService>();
-            builder.RegisterType<EfNewDal>().As<INewDal>();
-                
-            builder.RegisterType<SuppliedProductManager>().As<ISuppliedProductService>();
-            builder.RegisterType<DpSuppliedProductDal>().As<ISuppliedProductDal>();
-        
+            // [CHANGE]        
             builder.RegisterType<ProductManager>().As<IProductService>();
             builder.RegisterType<DpProductDal>().As<IProductDal>();
 
